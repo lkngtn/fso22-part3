@@ -1,0 +1,27 @@
+{
+  "name": "phonebook-backend",
+  "version": "1.0.0",
+  "description": "repo for fullstack open part 3 exercises",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lkngtn/fso22-part3.git"
+  },
+  "author": "Luke Duncan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lkngtn/fso22-part3/issues"
+  },
+  "homepage": "https://github.com/lkngtn/fso22-part3#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
