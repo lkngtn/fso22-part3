@@ -51,6 +51,28 @@ app.delete('/api/persons/:id', (request, response) => {
     response.status(204).end()
 })
 
+app.post('/api/persons', (request, response) => {
+    const body = request.body
+    if (!body.name || !body.number) {
+        return response.status(400).json({
+            error: 'provide both name and number for new person'
+        })
+    } else if (persons.map(person => person.name).includes(body.name)) {
+        return response.status(400).json({
+            error: 'name already exists on the server'
+        })
+    } 
+
+    const person = {
+        name: body.name,
+        number: body.number,
+        id: Math.floor(Math.random() * 100000)
+    }
+    
+    persons = persons.concat(person)
+    response.json(person)
+})
+
 const PORT = 3001
 app.listen(PORT)
 console.log(`Server running on port ${PORT}`);
