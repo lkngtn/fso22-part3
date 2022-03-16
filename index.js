@@ -25,10 +25,6 @@ let persons = [
       "number": "39-23-6423122"
     }
 ]
- 
-app.get('/api/persons', (request, response) => {
-    response.json(persons)
-})
 
 app.get('/info', (request, response) => {
     response.writeHead(200, {'Content-Type': 'text/html'})
@@ -36,6 +32,16 @@ app.get('/info', (request, response) => {
         <p>Phonebook has info for ${persons.length} people</p>
         <p>${new Date()}</p>
     `)
+})
+ 
+app.get('/api/persons', (request, response) => {
+    response.json(persons)
+})
+
+app.get('/api/persons/:id', (request, response) => {
+    const id = Number(request.params.id)
+    const person = persons.find(person => person.id === id)
+    person ? response.json(person) : response.status(404).end()
 })
 
 const PORT = 3001
