@@ -1,8 +1,10 @@
 const express = require('express')
 const morgan = require('morgan')
+const cors = require('cors')
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 
 morgan.token('body', req => JSON.stringify(req.body))
@@ -78,11 +80,22 @@ app.post('/api/persons', (request, response) => {
     response.json(person)
 })
 
+app.put('/api/persons/:id', (request, response) => {
+    const updated = request.body
+    if (!updated.name || !updated.number) {
+        return response.status(400).json({
+            error: 'provide both name and number for this person'
+        })
+    }
+    persons = persons.map(person => person.id !== body.id ? person : body)
+    response.json(body)
+})
+
 const unknownEndpoint = (request, response) => {
     response.status(404).send({error: 'unknown endpoint'})
 }
 app.use(unknownEndpoint)
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT)
 console.log(`Server running on port ${PORT}`);
