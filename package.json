@@ -5,6 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build:ui": "rm -rf build && cd ../fso22/part2/phonebook && npm run build && cp -r build ~/repos/learning/fso/fso22-part3",
+    "deploy": "git push heroku main",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
+    "logs:prod": "heroku logs -tail",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
