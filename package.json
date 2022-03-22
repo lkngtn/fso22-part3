@@ -10,7 +10,8 @@
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
     "logs:prod": "heroku logs --tail",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/lkngtn/fso22-part3#readme",
   "devDependencies": {
+    "eslint": "^8.11.0",
     "nodemon": "^2.0.15"
   },
   "dependencies": {
