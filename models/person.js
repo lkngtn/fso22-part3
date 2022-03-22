@@ -12,9 +12,22 @@ mongoose.connect(url)
         console.log('error connecting to MongoDB:', error.message)
     })
 
+// const personSchema = new mongoose.Schema({
+//     name: String, 
+//     number: String, 
+// })
+
 const personSchema = new mongoose.Schema({
-    name: String, 
-    number: String, 
+    name: {
+        type: String,
+        minlength: 3, 
+        required: true
+    },
+    number: {
+        type: String,
+        match: /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/, 
+        required: true, 
+    }
 })
 
 personSchema.set('toJSON', {
